@@ -32,7 +32,7 @@ func main() {
 
         fmt.Println("tunnel ID:", id)
 
-        tunnel := <- tunnels[id]
+        tunnel := <-tunnels[id]
         fmt.Println("tunnel opened")
 
         _, err := io.Copy(tunnel.w, s)
@@ -60,4 +60,5 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
         w: w,
         donech: donech,
     }
+    <-donech
 }
